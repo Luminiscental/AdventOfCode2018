@@ -11,34 +11,42 @@ public class Day1 {
 
     public static void main(String[] args) {
 
+        long startTime = System.currentTimeMillis();
+
         InputStream inputStream = Day1.class.getResourceAsStream("/com/luminiscental/aoc/inputDay1.txt");
         Stream<String> frequencyChanges = new BufferedReader(new InputStreamReader(inputStream)).lines();
 
-        var wrapper = new Object() {
+        boolean repeated = false;
+        boolean first = true;
+        int firstRepeated = 0;
 
-            boolean repeated = false;
-            int firstRepeated;
-
-            Set<Integer> frequencySet = new HashSet<>();
-            int resultantFrequency = 0;
-        };
+        Set<Integer> frequencySet = new HashSet<>();
+        int resultantFrequency = 0;
 
         String[] lines = frequencyChanges.toArray(String[]::new);
 
-        while (!wrapper.repeated) {
+        while (!repeated) {
+
              for (String line : lines) {
 
-                wrapper.frequencySet.add(wrapper.resultantFrequency);
-                wrapper.resultantFrequency += Integer.parseInt(line);
+                if (!repeated && !frequencySet.add(resultantFrequency)) {
 
-                if (!wrapper.repeated && wrapper.frequencySet.contains(wrapper.resultantFrequency)) {
-
-                    wrapper.firstRepeated = wrapper.resultantFrequency;
-                    wrapper.repeated = true;
+                    firstRepeated = resultantFrequency;
+                    repeated = true;
                 }
+
+                resultantFrequency += Integer.parseInt(line);
+            }
+
+            if (first) {
+                first = false;
+                System.out.println("The resultant frequency is " + resultantFrequency);
             }
         }
 
-        System.out.println("The first repeated frequency is " + wrapper.firstRepeated);
+        System.out.println("The first repeated frequency is " + firstRepeated);
+
+        long deltaTime = System.currentTimeMillis() - startTime;
+        System.out.println("Program took " + (deltaTime / 1000.0f) + " seconds to run");
     }
 }
