@@ -14,7 +14,7 @@ public class Day1 {
         long startTime = System.currentTimeMillis();
 
         InputStream inputStream = Day1.class.getResourceAsStream("/com/luminiscental/aoc/inputDay1.txt");
-        Stream<String> frequencyChanges = new BufferedReader(new InputStreamReader(inputStream)).lines();
+        String[] lines = new BufferedReader(new InputStreamReader(inputStream)).lines().toArray(String[]::new);
 
         boolean repeated = false;
         boolean first = true;
@@ -22,8 +22,6 @@ public class Day1 {
 
         Set<Integer> frequencySet = new HashSet<>();
         int resultantFrequency = 0;
-
-        String[] lines = frequencyChanges.toArray(String[]::new);
 
         while (!repeated) {
 
