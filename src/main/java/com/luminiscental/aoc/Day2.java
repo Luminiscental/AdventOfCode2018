@@ -1,19 +1,22 @@
 package com.luminiscental.aoc;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.*;
-import java.util.stream.*;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Day2 {
+public class Day2 extends Day {
 
     public static void main(String[] args) {
 
-        long startTime = System.currentTimeMillis();
+        new Day2().run();
+    }
 
-        InputStream inputStream = Day1.class.getResourceAsStream("/com/luminiscental/aoc/inputDay2.txt");
-        String[] lines = new BufferedReader(new InputStreamReader(inputStream)).lines().toArray(String[]::new);
+    private Day2() {
+
+        super("inputDay2.txt");
+    }
+
+    @Override
+    void solve(String[] lines) {
 
         int doubleCount = 0;
         int tripleCount = 0;
@@ -47,12 +50,9 @@ public class Day2 {
         }
 
         System.out.println("Checksum = " + doubleCount * tripleCount);
-
-        long deltaTime = System.currentTimeMillis() - startTime;
-        System.out.println("Program took " + (deltaTime / 1000.0f) + " seconds to run");
     }
 
-    private static boolean containsDuplicate(String word, int n) {
+    private boolean containsDuplicate(String word, int n) {
 
         Map<Character, Integer> characterCounts = new HashMap<>();
 
@@ -79,7 +79,7 @@ public class Day2 {
         return false;
     }
 
-    private static int oneOff(String a, String b) {
+    private int oneOff(String a, String b) {
 
         if (a.length() != b.length()) {
 

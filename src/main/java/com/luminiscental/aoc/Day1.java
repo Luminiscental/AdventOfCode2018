@@ -1,20 +1,22 @@
 package com.luminiscental.aoc;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Stream;
 
-public class Day1 {
+public class Day1 extends Day {
 
     public static void main(String[] args) {
 
-        long startTime = System.currentTimeMillis();
+        new Day1().run();
+    }
 
-        InputStream inputStream = Day1.class.getResourceAsStream("/com/luminiscental/aoc/inputDay1.txt");
-        String[] lines = new BufferedReader(new InputStreamReader(inputStream)).lines().toArray(String[]::new);
+    private Day1() {
+
+        super("inputDay1.txt");
+    }
+
+    @Override
+    void solve(String[] lines) {
 
         boolean repeated = false;
         boolean first = true;
@@ -37,14 +39,13 @@ public class Day1 {
             }
 
             if (first) {
+
                 first = false;
                 System.out.println("The resultant frequency is " + resultantFrequency);
             }
         }
 
         System.out.println("The first repeated frequency is " + firstRepeated);
-
-        long deltaTime = System.currentTimeMillis() - startTime;
-        System.out.println("Program took " + (deltaTime / 1000.0f) + " seconds to run");
     }
 }
+
