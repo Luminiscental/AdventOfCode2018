@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11ab939b-0b08-43d3-804b-4f8176c94f11" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day4.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/luminiscental/aoc/inputDay4.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day3.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,38 +18,40 @@
     <session id="1597654211">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="9" />
+          <entry key="project.closed" value="11" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="4" />
-          <entry key="java" value="15546" />
+          <entry key="java" value="38914" />
+          <entry key="txt" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="15546" />
-          <entry key="PLAIN_TEXT" value="4" />
+          <entry key="JAVA" value="38914" />
+          <entry key="PLAIN_TEXT" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="4" />
+          <entry key="java" value="5" />
           <entry key="properties" value="1" />
-          <entry key="txt" value="2" />
+          <entry key="txt" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="4" />
-          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="JAVA" value="5" />
+          <entry key="PLAIN_TEXT" value="3" />
           <entry key="Properties" value="1" />
         </counts>
       </usages-collector>
@@ -94,11 +95,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+            <state relative-caret-position="425">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day4.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="795">
+              <caret line="223" selection-start-line="223" selection-end-line="223" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -126,6 +139,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day2.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day1.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day3.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/com/luminiscental/aoc/inputDay4.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day4.java" />
       </list>
     </option>
   </component>
@@ -275,7 +290,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543850376385" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543933026454" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -293,7 +308,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Day3">
+  <component name="RunManager" selected="Application.Day4">
     <configuration name="Day1" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.luminiscental.aoc.Day1" />
       <module name="AdventOfCode2018" />
@@ -317,9 +332,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Day4" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.luminiscental.aoc.Day4" />
+      <module name="AdventOfCode2018" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Day2" />
       <item itemvalue="Application.Day3" />
+      <item itemvalue="Application.Day4" />
       <item itemvalue="Application.Day1" />
     </list>
     <recent_temporary>
@@ -343,9 +366,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20042644" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20255864" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -354,8 +376,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29417878" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997669" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.29417878" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991684" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -383,6 +405,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3698" />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/luminiscental/aoc/inputDay3.txt">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -414,13 +439,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/com/luminiscental/aoc/inputDay3.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+        <state relative-caret-position="425">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/luminiscental/aoc/inputDay4.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15334">
+          <caret line="902" selection-start-line="902" selection-end-line="902" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day4.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="223" selection-start-line="223" selection-end-line="223" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

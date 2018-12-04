@@ -55,17 +55,22 @@ public class Day3 extends Day {
             }
         }
 
+        checkOverlaps(grid, validIds);
+    }
+
+    private void checkOverlaps(Map<Integer, Set<Integer>> claims, Set<Integer> unoverlappedIds) {
+
         int overlaps = 0;
         int covered = 0;
 
-        for (var entry : grid.entrySet()) {
+        for (var entry : claims.entrySet()) {
 
             Set<Integer> ids = entry.getValue();
 
             if (ids.size() > 1) {
 
                 overlaps++;
-                validIds.removeAll(ids);
+                unoverlappedIds.removeAll(ids);
             }
 
             covered++;
@@ -73,7 +78,7 @@ public class Day3 extends Day {
 
         System.out.println("overlaps = " + overlaps + ", covered = " + covered);
 
-        for (int id : validIds) {
+        for (int id : unoverlappedIds) {
 
             System.out.println("#" + id + " isn't overlapped");
         }
