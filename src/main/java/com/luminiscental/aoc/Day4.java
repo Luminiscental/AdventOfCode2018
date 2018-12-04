@@ -21,6 +21,37 @@ public class Day4 extends Day {
         }
     }
 
+    private class SleepData {
+
+        int sleepiestMinute;
+        int sleepiestSleepTime;
+        int totalSleepTime;
+
+        SleepData(int id, Map<Integer, GuardData> days) {
+
+            int sleepiest = -1;
+            int max = 0;
+            int total = 0;
+
+            for (int i = 0; i < 60; i++) {
+
+                int count = countAsleep(id, days, i);
+
+                total += count;
+
+                if (max < count) {
+
+                    max = count;
+                    sleepiest = i;
+                }
+            }
+
+            this.sleepiestMinute = sleepiest;
+            this.sleepiestSleepTime = max;
+            this.totalSleepTime = total;
+        }
+    }
+
     public static void main(String[] args) {
 
         new Day4().run();
@@ -86,24 +117,20 @@ public class Day4 extends Day {
 
         for (int id : guards) {
 
-            var sleepData = sleepData(id, days);
+            SleepData sleepData = new SleepData(id, days);
 
-            int sleepiestMinute = sleepData.getKey();
-            int sleepiestCount = sleepData.getValue().getKey();
-            int totalSleep = sleepData.getValue().getValue();
+            if (sleepData.totalSleepTime > maxTotal) {
 
-            if (totalSleep > maxTotal) {
-
-                maxTotal = totalSleep;
+                maxTotal = sleepData.totalSleepTime;
                 frequentGuard = id;
-                frequentMinute = sleepiestMinute;
+                frequentMinute = sleepData.sleepiestMinute;
             }
 
-            if (sleepiestCount > maxCount) {
+            if (sleepData.sleepiestSleepTime > maxCount) {
 
-                maxCount = sleepiestCount;
+                maxCount = sleepData.sleepiestSleepTime;
                 consistentGuard = id;
-                consistentMinute = sleepiestMinute;
+                consistentMinute = sleepData.sleepiestMinute;
             }
         }
 
@@ -198,27 +225,5 @@ public class Day4 extends Day {
         }
 
         return count;
-    }
-
-    private Map.Entry<Integer, Map.Entry<Integer, Integer>> sleepData(int id, Map<Integer, GuardData> days) {
-
-        int sleepiest = -1;
-        int max = 0;
-        int total = 0;
-
-        for (int i = 0; i < 60; i++) {
-
-            int count = countAsleep(id, days, i);
-
-            total += count;
-
-            if (max < count) {
-
-                max = count;
-                sleepiest = i;
-            }
-        }
-
-        return new HashMap.SimpleEntry<>(sleepiest, new HashMap.SimpleEntry<>(max, total));
     }
 }
