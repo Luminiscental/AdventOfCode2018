@@ -41,16 +41,9 @@ public class Day3 extends Day {
 
                     int index = x + y * 1000;
 
-                    if (grid.containsKey(index)) {
-
-                        grid.get(index).add(id);
-
-                    } else {
-
-                        Set<Integer> ids = new HashSet<>();
-                        ids.add(id);
-                        grid.put(index, ids);
-                    }
+                    Set<Integer> val = grid.getOrDefault(index, new HashSet<>());
+                    val.add(id);
+                    grid.put(index, val);
                 }
             }
         }
@@ -60,23 +53,14 @@ public class Day3 extends Day {
 
     private void checkOverlaps(Map<Integer, Set<Integer>> claims, Set<Integer> unoverlappedIds) {
 
-        int overlaps = 0;
-        int covered = 0;
+        int overlaps = (int) claims.values().stream().filter(ids -> {
 
-        for (var entry : claims.entrySet()) {
+            unoverlappedIds.removeAll(ids);
+            return ids.size() > 1;
 
-            Set<Integer> ids = entry.getValue();
+        }).count();
 
-            if (ids.size() > 1) {
-
-                overlaps++;
-                unoverlappedIds.removeAll(ids);
-            }
-
-            covered++;
-        }
-
-        System.out.println("overlaps = " + overlaps + ", covered = " + covered);
+        System.out.println("overlaps = " + overlaps);
 
         for (int id : unoverlappedIds) {
 

@@ -1,5 +1,6 @@
 package com.luminiscental.aoc;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,25 +19,14 @@ public class Day2 extends Day {
     @Override
     void solve(String[] lines) {
 
-        int doubleCount = 0;
-        int tripleCount = 0;
+        int doubleCount = (int) Arrays.stream(lines).filter(line -> containsDuplicate(line, 2)).count();
+        int tripleCount = (int) Arrays.stream(lines).filter(line -> containsDuplicate(line, 3)).count();
 
         for (int i = 0; i < lines.length; i++) {
 
-            String line = lines[i];
-
-            if (containsDuplicate(line, 2)) {
-
-                doubleCount++;
-            }
-
-            if (containsDuplicate(line, 3)) {
-
-                tripleCount++;
-            }
-
             for (int j = 0; j < i; j++) {
 
+                String line = lines[i];
                 String other = lines[j];
 
                 int differAt = oneOff(line, other);

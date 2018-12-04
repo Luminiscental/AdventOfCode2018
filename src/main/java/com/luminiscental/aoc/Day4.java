@@ -6,22 +6,30 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Day4 extends Day {
 
     private class GuardData {
 
-        List<Integer> toggleMinutes;
+        List<Map.Entry<Integer, Integer>> sleepPeriods = new ArrayList<>();
         int id;
 
-        GuardData(int id, List<Integer> toggleMinutes) {
+        GuardData(int id) {
 
             this.id = id;
-            this.toggleMinutes = toggleMinutes;
+        }
+
+        GuardData add(int startTime, int endTime) {
+
+            sleepPeriods.add(new HashMap.SimpleEntry<>(startTime, endTime));
+            return this;
         }
     }
 
     private class SleepData {
+
+        int id;
 
         int sleepiestMinute;
         int sleepiestSleepTime;
@@ -29,26 +37,14 @@ public class Day4 extends Day {
 
         SleepData(int id, Map<Integer, GuardData> days) {
 
-            int sleepiest = -1;
-            int max = 0;
-            int total = 0;
+            this.id = id;
 
-            for (int i = 0; i < 60; i++) {
+            Set<Map.Entry<Integer, Integer>> entries = IntStream.range(0, 60).mapToObj(i -> new HashMap.SimpleEntry<>(i, countAsleep(id, days, i))).collect(Collectors.toSet());
+            Map.Entry<Integer, Integer> sleepiestEntry = entries.stream().max(Comparator.comparingInt(Map.Entry::getValue)).get();
 
-                int count = countAsleep(id, days, i);
-
-                total += count;
-
-                if (max < count) {
-
-                    max = count;
-                    sleepiest = i;
-                }
-            }
-
-            this.sleepiestMinute = sleepiest;
-            this.sleepiestSleepTime = max;
-            this.totalSleepTime = total;
+            this.sleepiestMinute = sleepiestEntry.getKey();
+            this.sleepiestSleepTime = sleepiestEntry.getValue();
+            this.totalSleepTime = entries.stream().mapToInt(Map.Entry::getValue).sum();
         }
     }
 
@@ -71,71 +67,21 @@ public class Day4 extends Day {
 
         for (String line : lines) {
 
-            ParsePosition pp = new ParsePosition(0);
-            String dateString = line.substring(0, 18);
-            Date date = parser.parse(dateString, pp);
-
-            String data = line.substring(19);
-            records.add(new HashMap.SimpleEntry<>(date, data));
+            Date date = parser.parse(line.substring(0, 18), new ParsePosition(0));
+            records.add(new HashMap.SimpleEntry<>(date, line.substring(19)));
         }
 
         records.sort(Comparator.comparing(Map.Entry::getKey));
 
         Map<Integer, GuardData> days = parseGuards(records);
-        Set<Integer> guards = days.values() .stream()
-                                            .map((x) -> x.id)
-                                            .collect(Collectors.toSet());
+        Set<Integer> guards = days.values().stream().map((x) -> x.id).collect(Collectors.toSet());
+        Set<SleepData> sleepData = guards.stream().map(id -> new SleepData(id, days)).collect(Collectors.toSet());
 
-        Map<Integer, Integer> sleepTotals = new HashMap<>();
+        SleepData consistent = sleepData.stream().max(Comparator.comparingInt(a -> a.sleepiestSleepTime)).get();
+        SleepData frequent = sleepData.stream().max(Comparator.comparingInt(a -> a.totalSleepTime)).get();
 
-        for (int id : guards) {
-
-            for (int i = 0; i < 60; i++) {
-
-                int count = countAsleep(id, days, i);
-
-                if (sleepTotals.containsKey(id)) {
-
-                    int total = sleepTotals.get(id) + count;
-                    sleepTotals.put(id, total);
-
-                } else {
-
-                    sleepTotals.put(id, count);
-                }
-            }
-        }
-
-        int consistentGuard = -1;
-        int consistentMinute = -1;
-
-        int frequentGuard = -1;
-        int frequentMinute = -1;
-
-        int maxTotal = 0;
-        int maxCount = 0;
-
-        for (int id : guards) {
-
-            SleepData sleepData = new SleepData(id, days);
-
-            if (sleepData.totalSleepTime > maxTotal) {
-
-                maxTotal = sleepData.totalSleepTime;
-                frequentGuard = id;
-                frequentMinute = sleepData.sleepiestMinute;
-            }
-
-            if (sleepData.sleepiestSleepTime > maxCount) {
-
-                maxCount = sleepData.sleepiestSleepTime;
-                consistentGuard = id;
-                consistentMinute = sleepData.sleepiestMinute;
-            }
-        }
-
-        System.out.println("Part 1 checksum = " + frequentGuard * frequentMinute);
-        System.out.println("Part 2 checksum = " + consistentGuard * consistentMinute);
+        System.out.println("Part 1 checksum = " + frequent.id * frequent.sleepiestMinute);
+        System.out.println("Part 2 checksum = " + consistent.id * consistent.sleepiestMinute);
     }
 
     private Map<Integer, GuardData> parseGuards(List<Map.Entry<Date, String>> records) {
@@ -145,12 +91,12 @@ public class Day4 extends Day {
 
         Calendar calendar = Calendar.getInstance();
 
+        boolean asleep = false;
+        int sleepStart = -1;
+
         for (Map.Entry<Date, String> entry : records) {
 
-            String info = entry.getValue();
-
-            Pattern guardId = Pattern.compile("#\\d+");
-            Matcher matcher = guardId.matcher(info);
+            Matcher matcher = Pattern.compile("#\\d+").matcher(entry.getValue());
 
             if (matcher.find()) {
 
@@ -161,24 +107,18 @@ public class Day4 extends Day {
                 calendar.setTime(entry.getKey());
 
                 int minutes = calendar.get(Calendar.MINUTE);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                int month = calendar.get(Calendar.MONTH);
 
-                int index = month * 100 + day;
+                if (asleep) {
 
-                if (days.containsKey(index)) {
-
-                    GuardData data = days.get(index);
-                    data.toggleMinutes.add(minutes);
-                    days.put(index, data);
+                    int index = calendar.get(Calendar.MONTH) * 100 + calendar.get(Calendar.DAY_OF_MONTH);
+                    days.put(index, days.getOrDefault(index, new GuardData(id)).add(sleepStart, minutes));
 
                 } else {
 
-                    List<Integer> toggleMinutes = new ArrayList<>();
-                    toggleMinutes.add(minutes);
-
-                    days.put(index, new GuardData(id, toggleMinutes));
+                    sleepStart = minutes;
                 }
+
+                asleep = !asleep;
             }
         }
 
@@ -187,43 +127,12 @@ public class Day4 extends Day {
 
     private int countAsleep(int id, Map<Integer, GuardData> days, int minute) {
 
-        int count = 0;
-
-        for (var entry : days.entrySet()) {
-
-            GuardData data = entry.getValue();
-
-            if (data.id == id) {
-
-                boolean asleep = false;
-
-                int lastToggle = -1;
-
-                for (int toggle : data.toggleMinutes) {
-
-                    if (asleep) {
-
-                        if (toggle > minute && lastToggle < minute) {
-
-                            count++;
-                            break;
-                        }
-
-                    } else {
-
-                        if (toggle == minute && lastToggle < minute) {
-
-                            count++;
-                            break;
-                        }
-                    }
-
-                    asleep = !asleep;
-                    lastToggle = toggle;
-                }
-            }
-        }
-
-        return count;
+        return (int) days.values()  .stream()
+                                    .filter(data -> data.id == id)
+                                    .map(data -> data.sleepPeriods  .stream()
+                                                                    .filter(p -> p.getKey() <= minute && p.getValue() > minute)
+                                                                    .count())
+                                    .mapToLong(x -> x)
+                                    .sum();
     }
 }

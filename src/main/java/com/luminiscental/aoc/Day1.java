@@ -27,7 +27,7 @@ public class Day1 extends Day {
 
         while (!repeated) {
 
-             for (String line : lines) {
+            for (String line : lines) {
 
                 if (!repeated && !frequencySet.add(resultantFrequency)) {
 

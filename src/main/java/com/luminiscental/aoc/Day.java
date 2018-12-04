@@ -18,11 +18,11 @@ abstract class Day {
     void run() {
 
         InputStream inputStream = Day1.class.getResourceAsStream("/com/luminiscental/aoc/" + inputFile);
-        String[] lines = new BufferedReader(new InputStreamReader(inputStream)).lines().toArray(String[]::new);
+        var lines = new BufferedReader(new InputStreamReader(inputStream)).lines();
 
         long startTime = System.currentTimeMillis();
 
-        solve(lines);
+        solve(lines.toArray(String[]::new));
 
         long deltaTime = System.currentTimeMillis() - startTime;
         System.out.println("Program took " + (deltaTime / 1000.0f) + " seconds to run");
