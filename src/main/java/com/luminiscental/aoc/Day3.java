@@ -53,12 +53,13 @@ public class Day3 extends Day {
 
     private void checkOverlaps(Map<Integer, Set<Integer>> claims, Set<Integer> unoverlappedIds) {
 
-        int overlaps = (int) claims.values().stream().filter(ids -> {
+        int overlaps = (int) claims.values().stream()
+                                            .filter(ids -> {
 
-            unoverlappedIds.removeAll(ids);
-            return ids.size() > 1;
+                                                unoverlappedIds.removeAll(ids);
+                                                return ids.size() > 1;
 
-        }).count();
+                                            }).count();
 
         System.out.println("overlaps = " + overlaps);
 

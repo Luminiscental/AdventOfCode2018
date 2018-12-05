@@ -1,6 +1,8 @@
 package com.luminiscental.aoc;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -35,11 +37,17 @@ public class Day5 extends Day {
             charWrapper.lower = c;
             charWrapper.upper = Character.toUpperCase(c);
 
-            String fixed = input.chars().filter(x -> (x != (int)charWrapper.lower) && (x != (int)charWrapper.upper)).mapToObj(x -> String.valueOf((char)x)).collect(Collectors.joining());
+            String fixed = input.chars()
+                                .filter(x -> (x != (int)charWrapper.lower) && (x != (int)charWrapper.upper))
+                                .mapToObj(x -> String.valueOf((char)x))
+                                .collect(Collectors.joining());
+
             shortenedLengths.add(getReactedLength(fixed));
         }
 
-        System.out.println("best fixed polymer reacts down to " + shortenedLengths.stream().mapToInt(x -> x).min().getAsInt() + " units");
+        System.out.println("best fixed polymer reacts down to " + shortenedLengths  .stream()
+                                                                                    .min(Comparator.comparingInt(x -> x))
+                                                                                    .get() + " units");
     }
 
     private int getReactedLength(String polymer) {
@@ -73,10 +81,14 @@ public class Day5 extends Day {
             }
         }
 
-        return IntStream.range(0, chainLength).filter(index -> !removed.contains(index)).mapToObj(index -> String.valueOf(units[index])).collect(Collectors.joining());
+        return IntStream.range(0, chainLength)
+                        .filter(index -> !removed.contains(index))
+                        .mapToObj(index -> String.valueOf(units[index]))
+                        .collect(Collectors.joining());
     }
 
     private boolean annihilate(char a, char b) {
+        
         return (Character.toLowerCase(a) == Character.toLowerCase(b)) && (a != b);
     }
 }

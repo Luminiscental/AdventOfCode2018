@@ -1,8 +1,7 @@
 package com.luminiscental.aoc;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Day2 extends Day {
 
@@ -19,8 +18,16 @@ public class Day2 extends Day {
     @Override
     void solve(String[] lines) {
 
-        int doubleCount = (int) Arrays.stream(lines).filter(line -> containsDuplicate(line, 2)).count();
-        int tripleCount = (int) Arrays.stream(lines).filter(line -> containsDuplicate(line, 3)).count();
+        int doubleCount = 0;
+        int tripleCount = 0;
+
+        for (String line : lines) {
+
+            Collection<Integer> characterCounts = countCharacters(line);
+
+            doubleCount += characterCounts.contains(2) ? 1 : 0;
+            tripleCount += characterCounts.contains(3) ? 1 : 0;
+        }
 
         for (int i = 0; i < lines.length; i++) {
 
@@ -42,31 +49,13 @@ public class Day2 extends Day {
         System.out.println("Checksum = " + doubleCount * tripleCount);
     }
 
-    private boolean containsDuplicate(String word, int n) {
+    private Collection<Integer> countCharacters(String word) {
 
-        Map<Character, Integer> characterCounts = new HashMap<>();
+          return word   .chars()
+                        .mapToObj(x -> (char)x)
+                        .collect(Collectors.toMap(c -> c, c -> 1, (a, b) -> a + b))
+                        .values();
 
-        for (char c : word.toCharArray()) {
-
-            if (characterCounts.containsKey(c)) {
-
-                characterCounts.put(c, characterCounts.get(c) + 1);
-
-            } else {
-
-                characterCounts.put(c, 1);
-            }
-        }
-
-        for (int count : characterCounts.values()) {
-
-            if (count == n) {
-
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private int oneOff(String a, String b) {
