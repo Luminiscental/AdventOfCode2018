@@ -39,12 +39,20 @@ public class Day4 extends Day {
 
             this.id = id;
 
-            Set<Map.Entry<Integer, Integer>> entries = IntStream.range(0, 60).mapToObj(i -> new HashMap.SimpleEntry<>(i, countAsleep(id, days, i))).collect(Collectors.toSet());
-            Map.Entry<Integer, Integer> sleepiestEntry = entries.stream().max(Comparator.comparingInt(Map.Entry::getValue)).get();
+            Set<Map.Entry<Integer, Integer>> entries = IntStream.range(0, 60)
+                                                                .mapToObj(i -> new HashMap.SimpleEntry<>(i, countAsleep(id, days, i)))
+                                                                .collect(Collectors.toSet());
+
+            Map.Entry<Integer, Integer> sleepiestEntry = entries.stream()
+                                                                .max(Comparator.comparingInt(Map.Entry::getValue))
+                                                                .get();
 
             this.sleepiestMinute = sleepiestEntry.getKey();
             this.sleepiestSleepTime = sleepiestEntry.getValue();
-            this.totalSleepTime = entries.stream().mapToInt(Map.Entry::getValue).sum();
+
+            this.totalSleepTime = entries   .stream()
+                                            .mapToInt(Map.Entry::getValue)
+                                            .sum();
         }
     }
 
@@ -61,24 +69,30 @@ public class Day4 extends Day {
     @Override
     void solve(String[] lines) {
 
-        List<Map.Entry<Date, String>> records = new ArrayList<>();
-
         SimpleDateFormat parser = new SimpleDateFormat("[yyyy-MM-dd HH:mm]");
 
-        for (String line : lines) {
-
-            Date date = parser.parse(line.substring(0, 18), new ParsePosition(0));
-            records.add(new HashMap.SimpleEntry<>(date, line.substring(19)));
-        }
-
-        records.sort(Comparator.comparing(Map.Entry::getKey));
+        var records = Arrays.stream(lines)
+                            .map(line -> (Map.Entry<Date, String>) new HashMap.SimpleEntry<>(parser.parse(line.substring(0, 18), new ParsePosition(0)), line.substring(19)))
+                            .sorted(Comparator.comparing(Map.Entry::getKey))
+                            .collect(Collectors.toList());
 
         Map<Integer, GuardData> days = parseGuards(records);
-        Set<Integer> guards = days.values().stream().map((x) -> x.id).collect(Collectors.toSet());
-        Set<SleepData> sleepData = guards.stream().map(id -> new SleepData(id, days)).collect(Collectors.toSet());
 
-        SleepData consistent = sleepData.stream().max(Comparator.comparingInt(a -> a.sleepiestSleepTime)).get();
-        SleepData frequent = sleepData.stream().max(Comparator.comparingInt(a -> a.totalSleepTime)).get();
+        Set<Integer> guards = days.values() .stream()
+                                            .map((x) -> x.id)
+                                            .collect(Collectors.toSet());
+
+        Set<SleepData> sleepData = guards   .stream()
+                                            .map(id -> new SleepData(id, days))
+                                            .collect(Collectors.toSet());
+
+        SleepData consistent = sleepData.stream()
+                                        .max(Comparator.comparingInt(a -> a.sleepiestSleepTime))
+                                        .get();
+
+        SleepData frequent = sleepData  .stream()
+                                        .max(Comparator.comparingInt(a -> a.totalSleepTime))
+                                        .get();
 
         System.out.println("Part 1 checksum = " + frequent.id * frequent.sleepiestMinute);
         System.out.println("Part 2 checksum = " + consistent.id * consistent.sleepiestMinute);
@@ -102,7 +116,7 @@ public class Day4 extends Day {
 
                 id = Integer.parseInt(matcher.group().substring(1));
 
-            } else if (id != -1) {
+            } else {
 
                 calendar.setTime(entry.getKey());
 
@@ -129,10 +143,9 @@ public class Day4 extends Day {
 
         return (int) days.values()  .stream()
                                     .filter(data -> data.id == id)
-                                    .map(data -> data.sleepPeriods  .stream()
-                                                                    .filter(p -> p.getKey() <= minute && p.getValue() > minute)
-                                                                    .count())
-                                    .mapToLong(x -> x)
+                                    .mapToLong(data -> data.sleepPeriods    .stream()
+                                                                            .filter(p -> p.getKey() <= minute && p.getValue() > minute)
+                                                                            .count())
                                     .sum();
     }
 }
