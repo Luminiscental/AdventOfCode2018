@@ -38,5 +38,6 @@ abstract class Day {
         new Day4().run();
         new Day5().run();
         new Day6().run();
+        new Day7().run();
     }
 }

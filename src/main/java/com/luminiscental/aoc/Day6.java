@@ -91,6 +91,7 @@ public class Day6 extends Day {
                     } else if (d == minD) {
 
                         minIndex = -1;
+                        break;
                     }
                 }
 
