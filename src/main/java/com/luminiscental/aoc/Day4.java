@@ -56,14 +56,9 @@ public class Day4 extends Day {
         }
     }
 
-    public static void main(String[] args) {
+    Day4() {
 
-        new Day4().run();
-    }
-
-    private Day4() {
-
-        super("inputDay4.txt");
+        super(4);
     }
 
     @Override

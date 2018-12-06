@@ -5,14 +5,9 @@ import java.util.Set;
 
 public class Day1 extends Day {
 
-    public static void main(String[] args) {
+    Day1() {
 
-        new Day1().run();
-    }
-
-    private Day1() {
-
-        super("inputDay1.txt");
+        super(1);
     }
 
     @Override

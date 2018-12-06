@@ -8,14 +8,9 @@ import java.util.stream.IntStream;
 
 public class Day5 extends Day {
 
-    public static void main(String[] args) {
+    Day5() {
 
-        new Day5().run();
-    }
-
-    private Day5() {
-
-        super("inputDay5.txt");
+        super(5);
     }
 
     @Override
@@ -88,7 +83,7 @@ public class Day5 extends Day {
     }
 
     private boolean annihilate(char a, char b) {
-        
+
         return (Character.toLowerCase(a) == Character.toLowerCase(b)) && (a != b);
     }
 }

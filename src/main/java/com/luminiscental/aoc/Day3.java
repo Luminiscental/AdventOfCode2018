@@ -7,14 +7,9 @@ import java.util.Set;
 
 public class Day3 extends Day {
 
-    public static void main(String[] args) {
+    Day3() {
 
-        new Day3().run();
-    }
-
-    private Day3() {
-
-        super("inputDay3.txt");
+        super(3);
     }
 
     @Override

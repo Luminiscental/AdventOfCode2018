@@ -5,14 +5,9 @@ import java.util.stream.Collectors;
 
 public class Day2 extends Day {
 
-    public static void main(String[] args) {
+    Day2() {
 
-        new Day2().run();
-    }
-
-    private Day2() {
-
-        super("inputDay2.txt");
+        super(2);
     }
 
     @Override
