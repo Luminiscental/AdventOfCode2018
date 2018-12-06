@@ -36,11 +36,11 @@ public class Day1 extends Day {
             if (first) {
 
                 first = false;
-                System.out.println("The resultant frequency is " + resultantFrequency);
+                System.out.println("resultant frequency is " + resultantFrequency);
             }
         }
 
-        System.out.println("The first repeated frequency is " + firstRepeated);
+        System.out.println("first repeated frequency is " + firstRepeated);
     }
 }
 

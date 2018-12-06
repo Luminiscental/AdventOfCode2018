@@ -36,12 +36,12 @@ public class Day2 extends Day {
                 if (differAt > -1) {
 
                     String charRemoved = line.substring(0, differAt) + line.substring(differAt + 1);
-                    System.out.println("The ids \"" + line + "\" and \"" + other + "\" differ once, leaving \"" + charRemoved + "\"");
+                    System.out.println("ids differing once left \"" + charRemoved + "\"");
                 }
             }
         }
 
-        System.out.println("Checksum = " + doubleCount * tripleCount);
+        System.out.println("double-triple checksum = " + doubleCount * tripleCount);
     }
 
     private Collection<Integer> countCharacters(String word) {

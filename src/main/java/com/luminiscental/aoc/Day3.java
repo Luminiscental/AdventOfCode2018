@@ -51,7 +51,7 @@ public class Day3 extends Day {
         int overlaps = (int) claims.values().stream()
                                             .filter(ids -> {
 
-                                                unoverlappedIds.removeAll(ids);
+                                                if (ids.size() > 1) unoverlappedIds.removeAll(ids);
                                                 return ids.size() > 1;
 
                                             }).count();

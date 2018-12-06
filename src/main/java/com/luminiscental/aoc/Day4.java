@@ -89,8 +89,8 @@ public class Day4 extends Day {
                                         .max(Comparator.comparingInt(a -> a.totalSleepTime))
                                         .get();
 
-        System.out.println("Part 1 checksum = " + frequent.id * frequent.sleepiestMinute);
-        System.out.println("Part 2 checksum = " + consistent.id * consistent.sleepiestMinute);
+        System.out.println("frequent sleeper checksum = " + frequent.id * frequent.sleepiestMinute);
+        System.out.println("consistent sleeper checksum = " + consistent.id * consistent.sleepiestMinute);
     }
 
     private Map<Integer, GuardData> parseGuards(List<Map.Entry<Date, String>> records) {

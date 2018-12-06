@@ -30,7 +30,10 @@ public class Day6 extends Day {
 
         int[] grid = loadGrid(centers);
 
-        Set<Integer> finite = Arrays.stream(grid).boxed().filter(x -> x != -1).collect(Collectors.toSet());
+        Set<Integer> finite = Arrays.stream(grid)
+                                    .boxed()
+                                    .filter(x -> x != -1)
+                                    .collect(Collectors.toSet());
 
         for (int i = 0; i < width; i++) {
             
@@ -40,9 +43,14 @@ public class Day6 extends Day {
             finite.remove(grid[(width - 1) + i * width]);
         }
 
-        Map<Integer, Integer> areas = Arrays.stream(grid).boxed().filter(finite::contains).collect(Collectors.toMap(c -> c, c -> 1, (a, b) -> a + b));
+        Map<Integer, Integer> areas = Arrays.stream(grid)
+                                            .boxed()
+                                            .filter(finite::contains)
+                                            .collect(Collectors.toMap(c -> c, c -> 1, (a, b) -> a + b));
 
-        int largestArea = areas.values().stream().max(Comparator.comparingInt(x -> x)).get();
+        int largestArea = areas.values().stream()
+                                        .max(Comparator.comparingInt(x -> x)).get();
+
         System.out.println("largest area is " + largestArea);
 
         Set<Integer> region = getRegionBounded(centers);
@@ -79,6 +87,10 @@ public class Day6 extends Day {
 
                         minD = d;
                         minIndex = i;
+
+                    } else if (d == minD) {
+
+                        minIndex = -1;
                     }
                 }
 
