@@ -1,6 +1,6 @@
 package com.luminiscental.aoc;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Day1 extends Day {
@@ -17,7 +17,7 @@ public class Day1 extends Day {
         boolean first = true;
         int firstRepeated = 0;
 
-        Set<Integer> frequencySet = new HashSet<>();
+        Set<Integer> frequencySet = new LinkedHashSet<>();
         int resultantFrequency = 0;
 
         while (!repeated) {

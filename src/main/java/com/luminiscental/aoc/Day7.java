@@ -107,7 +107,7 @@ public class Day7 extends Day {
     private List<Integer> getAlphabeticalOrdering(Set<Integer> available, DirectedGraph graph) {
 
         List<Integer> completed = new ArrayList<>();
-        Set<Integer> pending = new HashSet<>();
+        Set<Integer> pending = new LinkedHashSet<>();
 
         do {
 
@@ -139,7 +139,7 @@ public class Day7 extends Day {
         int time = 0;
 
         List<Integer> completed = new ArrayList<>();
-        Set<Integer> pending = new HashSet<>();
+        Set<Integer> pending = new LinkedHashSet<>();
 
         List<WorkerState> workers = new ArrayList<>();
 
@@ -157,7 +157,7 @@ public class Day7 extends Day {
             List<Integer> todo = new ArrayList<>(available);
             Collections.sort(todo);
 
-            Set<Integer> assignedTasks = new HashSet<>();
+            Set<Integer> assignedTasks = new LinkedHashSet<>();
 
             for (int task : todo) {
 

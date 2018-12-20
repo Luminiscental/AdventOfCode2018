@@ -1,7 +1,7 @@
 package com.luminiscental.aoc.util;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -41,7 +41,7 @@ public class OrderedTree<T> {
 
         Set<Node<T>> getAllChildren() {
 
-            Set<Node<T>> result = new HashSet<>(getChildren());
+            Set<Node<T>> result = new LinkedHashSet<>(getChildren());
 
             for (Node<T> child : children) {
 

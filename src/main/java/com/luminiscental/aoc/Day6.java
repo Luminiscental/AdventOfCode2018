@@ -109,7 +109,7 @@ public class Day6 extends Day {
 
     private Set<Integer> getRegionBounded(List<Integer> centers) {
 
-        Set<Integer> boundedRegion = new HashSet<>();
+        Set<Integer> boundedRegion = new LinkedHashSet<>();
 
         for (int y = 0; y < width; y++) {
 

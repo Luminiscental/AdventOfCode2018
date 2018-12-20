@@ -1,13 +1,16 @@
 package com.luminiscental.aoc.util;
 
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class DirectedGraph {
 
     static class Node {
 
-        List<Integer> inEdges = new ArrayList<>();
-        List<Integer> outEdges = new ArrayList<>();
+        Set<Integer> inEdges = new LinkedHashSet<>();
+        Set<Integer> outEdges = new LinkedHashSet<>();
     }
 
     private final Map<Integer, Node> nodes = new LinkedHashMap<>();
@@ -60,12 +63,12 @@ public class DirectedGraph {
 
     public Set<Integer> getChildren(int id) {
 
-        return new HashSet<>(nodes.getOrDefault(id, new Node()).outEdges);
+        return nodes.getOrDefault(id, new Node()).outEdges;
     }
 
     public Set<Integer> getParents(int id) {
 
-        return new HashSet<>(nodes.getOrDefault(id, new Node()).inEdges);
+        return nodes.getOrDefault(id, new Node()).inEdges;
     }
 
     public Set<Integer> nodeSet() {

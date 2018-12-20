@@ -1,6 +1,6 @@
 package com.luminiscental.aoc;
 
-import java.util.*;
+import java.util.Collection;
 import java.util.stream.Collectors;
 
 public class Day2 extends Day {
