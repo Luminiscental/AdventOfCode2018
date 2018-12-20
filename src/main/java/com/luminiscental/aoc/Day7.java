@@ -175,15 +175,6 @@ public class Day7 extends Day {
             pending.removeAll(assignedTasks);
             available.removeAll(assignedTasks);
 
-            /*System.out.print(time + ": ");
-
-            for (WorkerState worker : workers) {
-
-                System.out.print(worker.isWorking() ? (char) worker.currentTask : ".");
-            }
-
-            System.out.println();*/
-
             for (WorkerState worker : workers) {
 
                 int assignedTask = worker.currentTask;

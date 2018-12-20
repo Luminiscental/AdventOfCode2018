@@ -14,7 +14,7 @@ public class Day6 extends Day {
     }
 
     @Override
-    void solve(String[] lines) {
+    void solve(String[] lines) throws InvalidInputException {
 
         List<Integer> centers = new ArrayList<>();
 
@@ -48,8 +48,13 @@ public class Day6 extends Day {
                                             .filter(finite::contains)
                                             .collect(Collectors.toMap(c -> c, c -> 1, (a, b) -> a + b));
 
-        int largestArea = areas.values().stream()
-                                        .max(Comparator.comparingInt(x -> x)).get();
+        Optional<Integer> largestArea = areas.values().stream()
+                                                      .max(Comparator.comparingInt(x -> x));
+
+        if (largestArea.isEmpty()) {
+
+            throw new InvalidInputException();
+        }
 
         System.out.println("largest area is " + largestArea);
 

@@ -35,7 +35,7 @@ public class Day4 extends Day {
         int sleepiestSleepTime;
         int totalSleepTime;
 
-        SleepData(int id, Map<Integer, GuardData> days) {
+        SleepData(int id, Map<Integer, GuardData> days) throws InvalidInputException {
 
             this.id = id;
 
@@ -43,16 +43,22 @@ public class Day4 extends Day {
                                                                 .mapToObj(i -> new HashMap.SimpleEntry<>(i, countAsleep(id, days, i)))
                                                                 .collect(Collectors.toSet());
 
-            Map.Entry<Integer, Integer> sleepiestEntry = entries.stream()
-                                                                .max(Comparator.comparingInt(Map.Entry::getValue))
-                                                                .get();
+            Optional<Map.Entry<Integer, Integer>> sleepiestEntry = entries.stream()
+                                                                          .max(Comparator.comparingInt(Map.Entry::getValue));
 
-            this.sleepiestMinute = sleepiestEntry.getKey();
-            this.sleepiestSleepTime = sleepiestEntry.getValue();
+            if (sleepiestEntry.isPresent()) {
 
-            this.totalSleepTime = entries   .stream()
-                                            .mapToInt(Map.Entry::getValue)
-                                            .sum();
+                this.sleepiestMinute = sleepiestEntry.get().getKey();
+                this.sleepiestSleepTime = sleepiestEntry.get().getValue();
+
+                this.totalSleepTime = entries.stream()
+                                             .mapToInt(Map.Entry::getValue)
+                                             .sum();
+
+            } else {
+
+                throw new InvalidInputException();
+            }
         }
     }
 
@@ -62,7 +68,7 @@ public class Day4 extends Day {
     }
 
     @Override
-    void solve(String[] lines) {
+    void solve(String[] lines) throws InvalidInputException {
 
         SimpleDateFormat parser = new SimpleDateFormat("[yyyy-MM-dd HH:mm]");
 
@@ -73,24 +79,30 @@ public class Day4 extends Day {
 
         Map<Integer, GuardData> days = parseGuards(records);
 
-        Set<Integer> guards = days.values() .stream()
-                                            .map((x) -> x.id)
-                                            .collect(Collectors.toSet());
+        Set<Integer> guards = days.values().stream()
+                                           .map((x) -> x.id)
+                                           .collect(Collectors.toSet());
 
-        Set<SleepData> sleepData = guards   .stream()
-                                            .map(id -> new SleepData(id, days))
-                                            .collect(Collectors.toSet());
+        Set<SleepData> sleepData = guards.stream()
+                                         .map(id -> new SleepData(id, days))
+                                         .collect(Collectors.toSet());
 
-        SleepData consistent = sleepData.stream()
-                                        .max(Comparator.comparingInt(a -> a.sleepiestSleepTime))
-                                        .get();
+        Optional<SleepData> consistent = sleepData.stream()
+                                                  .max(Comparator.comparingInt(a -> a.sleepiestSleepTime));
 
-        SleepData frequent = sleepData  .stream()
-                                        .max(Comparator.comparingInt(a -> a.totalSleepTime))
-                                        .get();
+        Optional<SleepData> frequent = sleepData.stream()
+                                                .max(Comparator.comparingInt(a -> a.totalSleepTime));
 
-        System.out.println("frequent sleeper checksum = " + frequent.id * frequent.sleepiestMinute);
-        System.out.println("consistent sleeper checksum = " + consistent.id * consistent.sleepiestMinute);
+        if (frequent.isPresent()) {
+
+            System.out.println("frequent sleeper checksum = " + frequent.get().id * frequent.get().sleepiestMinute);
+
+        } else {
+
+            throw new InvalidInputException();
+        }
+
+        System.out.println("consistent sleeper checksum = " + consistent.get().id * consistent.get().sleepiestMinute);
     }
 
     private Map<Integer, GuardData> parseGuards(List<Map.Entry<Date, String>> records) {
@@ -136,11 +148,11 @@ public class Day4 extends Day {
 
     private int countAsleep(int id, Map<Integer, GuardData> days, int minute) {
 
-        return (int) days.values()  .stream()
-                                    .filter(data -> data.id == id)
-                                    .mapToLong(data -> data.sleepPeriods    .stream()
-                                                                            .filter(p -> p.getKey() <= minute && p.getValue() > minute)
-                                                                            .count())
-                                    .sum();
+        return (int) days.values().stream()
+                                  .filter(data -> data.id == id)
+                                  .mapToLong(data -> data.sleepPeriods.stream()
+                                                                      .filter(p -> p.getKey() <= minute && p.getValue() > minute)
+                                                                      .count())
+                                  .sum();
     }
 }

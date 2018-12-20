@@ -2,6 +2,7 @@ package com.luminiscental.aoc;
 
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -14,7 +15,7 @@ public class Day5 extends Day {
     }
 
     @Override
-    void solve(String[] lines) {
+    void solve(String[] lines) throws InvalidInputException {
 
         String input = lines[0];
 
@@ -40,9 +41,17 @@ public class Day5 extends Day {
             shortenedLengths.add(getReactedLength(fixed));
         }
 
-        System.out.println("best fixed polymer reacts down to " + shortenedLengths  .stream()
-                                                                                    .min(Comparator.comparingInt(x -> x))
-                                                                                    .get() + " units");
+        Optional<Integer> reactedLength = shortenedLengths.stream()
+                                                          .min(Comparator.comparingInt(x -> x));
+
+        if (reactedLength.isPresent()) {
+
+            System.out.println("best fixed polymer reacts down to " + reactedLength.get() + " units");
+
+        } else {
+
+            throw new InvalidInputException();
+        }
     }
 
     private int getReactedLength(String polymer) {

@@ -46,10 +46,10 @@ public class Day2 extends Day {
 
     private Collection<Integer> countCharacters(String word) {
 
-          return word   .chars()
-                        .mapToObj(x -> (char)x)
-                        .collect(Collectors.toMap(c -> c, c -> 1, (a, b) -> a + b))
-                        .values();
+          return word.chars()
+                     .mapToObj(x -> (char)x)
+                     .collect(Collectors.toMap(c -> c, c -> 1, (a, b) -> a + b))
+                     .values();
 
     }
 

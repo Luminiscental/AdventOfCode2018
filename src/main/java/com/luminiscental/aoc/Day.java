@@ -6,6 +6,14 @@ import java.io.InputStreamReader;
 
 abstract class Day {
 
+    static class InvalidInputException extends RuntimeException {
+
+        InvalidInputException() {
+
+            super("Input was invalid!");
+        }
+    }
+
     private final int day;
 
     Day(int day) {
@@ -13,7 +21,7 @@ abstract class Day {
         this.day = day;
     }
 
-    abstract void solve(String[] lines);
+    abstract void solve(String[] lines) throws InvalidInputException;
 
     void run() {
 
@@ -24,7 +32,14 @@ abstract class Day {
 
         long startTime = System.currentTimeMillis();
 
-        solve(lines.toArray(String[]::new));
+        try {
+
+            solve(lines.toArray(String[]::new));
+
+        } catch(InvalidInputException e) {
+
+            System.out.println("Could not solve; input exception thrown\n" + e.getMessage());
+        }
 
         long deltaTime = System.currentTimeMillis() - startTime;
         System.out.println("\ntook " + (deltaTime / 1000.0f) + " seconds to run\n");
@@ -32,12 +47,15 @@ abstract class Day {
 
     public static void main(String[] args) {
 
+        System.out.println();
+
         // new Day1().run();
         // new Day2().run();
         // new Day3().run();
         // new Day4().run();
         // new Day5().run();
         // new Day6().run();
-        new Day7().run();
+        // new Day7().run();
+        new Day8().run();
     }
 }
