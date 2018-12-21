@@ -1,6 +1,7 @@
 package com.luminiscental.aoc;
 
 import com.luminiscental.aoc.util.DirectedGraph;
+import org.apache.commons.collections4.list.TreeList;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -66,7 +67,7 @@ public class Day7 extends Day {
             if (line.trim().length() == 0) continue;
 
             Matcher matcher = nodePattern.matcher(line);
-            List<Character> parsedChars = new ArrayList<>();
+            List<Character> parsedChars = new TreeList<>();
 
             while (matcher.find()) {
 
@@ -106,7 +107,7 @@ public class Day7 extends Day {
 
     private List<Integer> getAlphabeticalOrdering(Set<Integer> available, DirectedGraph graph) {
 
-        List<Integer> completed = new ArrayList<>();
+        List<Integer> completed = new TreeList<>();
         Set<Integer> pending = new TreeSet<>();
 
         do {
@@ -138,10 +139,10 @@ public class Day7 extends Day {
 
         int time = 0;
 
-        List<Integer> completed = new ArrayList<>();
+        List<Integer> completed = new TreeList<>();
         Set<Integer> pending = new TreeSet<>();
 
-        List<WorkerState> workers = new ArrayList<>();
+        List<WorkerState> workers = new TreeList<>();
 
         for (int i = 0; i < workerCount; i++) {
 
@@ -154,7 +155,7 @@ public class Day7 extends Day {
                                     .filter(x -> completed.containsAll(graph.getParents(x)))
                                     .collect(Collectors.toSet()));
 
-            List<Integer> todo = new ArrayList<>(available);
+            List<Integer> todo = new TreeList<>(available);
             Collections.sort(todo);
 
             Set<Integer> assignedTasks = new TreeSet<>();

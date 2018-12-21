@@ -24,6 +24,7 @@ public class Day5 extends Day {
         Set<Integer> shortenedLengths = new TreeSet<>();
 
         var charWrapper = new Object() {
+
             char lower;
             char upper;
         };

@@ -1,13 +1,14 @@
 package com.luminiscental.aoc.util;
 
-import java.util.ArrayList;
+import org.apache.commons.collections4.list.TreeList;
+
 import java.util.TreeSet;
 import java.util.List;
 import java.util.Set;
 
-public class OrderedTree<T> {
+public class OrderedTree<T extends Comparable<T>> {
 
-    public static class Node<T> {
+    public static class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
 
         OrderedTree tree;
         public T value;
@@ -20,7 +21,33 @@ public class OrderedTree<T> {
             this.tree = tree;
             this.value = value;
 
-            children = new ArrayList<>();
+            children = new TreeList<>();
+        }
+
+        @Override
+        public int compareTo(Node<T> other) {
+
+            return value.compareTo(other.value);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+
+            Class<? extends Node> nodeType = getClass();
+
+            if (nodeType.isInstance(other)) {
+
+                Node casted = nodeType.cast(other);
+                return casted.value == value;
+            }
+
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+
+            return value.hashCode() * 13 + tree.hashCode() * 17 + childrenCount * 131;
         }
 
         void addChild(Node<T> child) {

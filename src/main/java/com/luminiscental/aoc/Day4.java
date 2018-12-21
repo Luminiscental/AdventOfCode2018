@@ -1,5 +1,7 @@
 package com.luminiscental.aoc;
 
+import org.apache.commons.collections4.list.TreeList;
+
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -12,7 +14,7 @@ public class Day4 extends Day {
 
     private class GuardData {
 
-        List<Map.Entry<Integer, Integer>> sleepPeriods = new ArrayList<>();
+        List<Map.Entry<Integer, Integer>> sleepPeriods = new TreeList<>();
         int id;
 
         GuardData(int id) {

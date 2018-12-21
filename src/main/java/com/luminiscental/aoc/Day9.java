@@ -75,7 +75,13 @@ public class Day9 extends Day {
             throw new InvalidInputException();
         }
 
-        int lastMarble = 100 * Integer.parseInt(matcher.group());
+        int lastMarble = Integer.parseInt(matcher.group());
+
+        System.out.println("After " + lastMarble + " turns the winner has a score of " + getWinningScore(lastMarble, playerCount));
+        System.out.println("After " + (100 * lastMarble) + " turns the winner has a score of " + getWinningScore(100 * lastMarble, playerCount));
+    }
+
+    private long getWinningScore(int lastMarble, int playerCount) {
 
         Circle circle = new Circle();
         List<Long> scores = new TreeList<>();
@@ -97,7 +103,7 @@ public class Day9 extends Day {
 
         if (winningScore.isPresent()) {
 
-            System.out.println("Winner has " + winningScore.getAsLong() + " score");
+            return winningScore.getAsLong();
 
         } else {
 

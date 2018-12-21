@@ -1,5 +1,7 @@
 package com.luminiscental.aoc;
 
+import org.apache.commons.collections4.list.TreeList;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -16,7 +18,7 @@ public class Day6 extends Day {
     @Override
     void solve(String[] lines) throws InvalidInputException {
 
-        List<Integer> centers = new ArrayList<>();
+        List<Integer> centers = new TreeList<>();
 
         for (String line : lines) {
 

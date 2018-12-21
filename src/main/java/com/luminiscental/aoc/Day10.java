@@ -1,8 +1,6 @@
 package com.luminiscental.aoc;
 
-import java.util.OptionalInt;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,6 +38,16 @@ public class Day10 extends Day {
         private String getSerial() {
 
             return initialPositionX + "." + initialPositionY + "." + velocityX + "." + velocityY;
+        }
+
+        int getX() {
+
+            return positionX;
+        }
+
+        int getY() {
+
+            return positionY;
         }
 
         @Override
@@ -111,50 +119,38 @@ public class Day10 extends Day {
             time++;
         }
 
-        System.out.println("Took " + time + " seconds");
+        System.out.println("After " + time + " seconds");
     }
 
     private boolean printLightsIfSmall(Set<Light> lights) {
 
-        OptionalInt optMinX = lights.stream().mapToInt(light -> light.positionX).min();
-        OptionalInt optMaxX = lights.stream().mapToInt(light -> light.positionX).max();
-        OptionalInt optMinY = lights.stream().mapToInt(light -> light.positionY).min();
-        OptionalInt optMaxY = lights.stream().mapToInt(light -> light.positionY).max();
+        int minX = Collections.min(lights, Comparator.comparingInt(Light::getX)).positionX;
+        int minY = Collections.min(lights, Comparator.comparingInt(Light::getY)).positionY;
+        int maxX = Collections.max(lights, Comparator.comparingInt(Light::getX)).positionX;
+        int maxY = Collections.max(lights, Comparator.comparingInt(Light::getY)).positionY;
 
-        if (optMinX.isPresent()) {
+        if (maxX - minX <= 80 && maxY - minY <= 10) { // magic numbers :p
 
-            int minX = optMinX.getAsInt();
-            int maxX = optMaxX.getAsInt();
-            int minY = optMinY.getAsInt();
-            int maxY = optMaxY.getAsInt();
+            for (int y = minY; y <= maxY; y++) {
 
-            if (maxX - minX <= 80 && maxY - minY <= 10) { // magic numbers :p
+                for (int x = minX; x <= maxX; x++) {
 
-                for (int y = minY; y <= maxY; y++) {
+                    final int _x = x;
+                    final int _y = y;
 
-                    for (int x = minX; x <= maxX; x++) {
+                    long count = lights.stream().filter(light -> light.positionY == _y && light.positionX == _x).count();
 
-                        final int _x = x;
-                        final int _y = y;
+                    char value = count == 0 ? ' ' : '■';
 
-                        long count = lights.stream().filter(light -> light.positionY == _y && light.positionX == _x).count();
-
-                        char value = count == 0 ? ' ' : '■';
-
-                        System.out.print(value);
-                    }
-
-                    System.out.println();
+                    System.out.print(value);
                 }
 
                 System.out.println();
-
-                return true;
             }
 
-        } else {
+            System.out.println();
 
-            throw new InvalidInputException();
+            return true;
         }
 
         return false;
