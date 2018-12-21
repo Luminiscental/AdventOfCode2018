@@ -1,7 +1,7 @@
 package com.luminiscental.aoc;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -15,8 +15,8 @@ public class Day3 extends Day {
     @Override
     void solve(String[] lines) {
 
-        Map<Integer, Set<Integer>> grid = new LinkedHashMap<>();
-        Set<Integer> validIds = new LinkedHashSet<>();
+        Map<Integer, Set<Integer>> grid = new TreeMap<>();
+        Set<Integer> validIds = new TreeSet<>();
 
         for (String line : lines) {
 
@@ -36,7 +36,7 @@ public class Day3 extends Day {
 
                     int index = x + y * 1000;
 
-                    Set<Integer> val = grid.getOrDefault(index, new LinkedHashSet<>());
+                    Set<Integer> val = grid.getOrDefault(index, new TreeSet<>());
                     val.add(id);
                     grid.put(index, val);
                 }

@@ -1,7 +1,7 @@
 package com.luminiscental.aoc;
 
 import java.util.Comparator;
-import java.util.LinkedHashSet;
+import java.util.TreeSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,7 +21,7 @@ public class Day5 extends Day {
 
         System.out.println("original polymer reacts down to " + getReactedLength(input) + " units");
 
-        Set<Integer> shortenedLengths = new LinkedHashSet<>();
+        Set<Integer> shortenedLengths = new TreeSet<>();
 
         var charWrapper = new Object() {
             char lower;
@@ -74,7 +74,7 @@ public class Day5 extends Day {
         char[] units = polymer.toCharArray();
         int chainLength = polymer.length();
 
-        Set<Integer> removed = new LinkedHashSet<>();
+        Set<Integer> removed = new TreeSet<>();
 
         for (int i = 1; i < chainLength; i++) {
 

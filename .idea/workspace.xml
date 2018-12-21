@@ -2,12 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11ab939b-0b08-43d3-804b-4f8176c94f11" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day9.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/luminiscental/aoc/inputDay9.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/commons-collections4-4.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day10.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/luminiscental/aoc/inputDay10.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AdventOfCode2018.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AdventOfCode2018.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day8.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day8.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day6.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day6.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day7.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/util/DirectedGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/util/DirectedGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/util/OrderedTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/util/OrderedTree.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,51 +69,74 @@
     <session id="1364678523">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
+          <entry key="project.closed" value="11" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.14" value="1" />
-          <entry key="project.open.time.4" value="7" />
+          <entry key="project.open.time.4" value="9" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="8" />
-          <entry key="java" value="53322" />
-          <entry key="txt" value="10" />
+          <entry key="dummy" value="36" />
+          <entry key="java" value="58561" />
+          <entry key="txt" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="53322" />
-          <entry key="PLAIN_TEXT" value="18" />
+          <entry key="JAVA" value="58561" />
+          <entry key="PLAIN_TEXT" value="60" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="52" />
-          <entry key="txt" value="5" />
+          <entry key="iml" value="1" />
+          <entry key="java" value="59" />
+          <entry key="txt" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="52" />
-          <entry key="PLAIN_TEXT" value="5" />
+          <entry key="IDEA_MODULE" value="1" />
+          <entry key="JAVA" value="59" />
+          <entry key="PLAIN_TEXT" value="7" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
+            <state relative-caret-position="746">
+              <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day10.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="113" column="55" selection-start-line="113" selection-start-column="55" selection-end-line="113" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/com/luminiscental/aoc/inputDay10.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="590">
+              <caret line="352" selection-start-line="352" selection-end-line="352" />
             </state>
           </provider>
         </entry>
@@ -122,7 +153,11 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>V</find>
+      <find>LinkedHash</find>
     </findStrings>
+    <replaceStrings>
+      <replace>Tree</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -148,9 +183,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day7.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/util/DirectedGraph.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day8.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day.java" />
         <option value="$PROJECT_DIR$/src/main/resources/com/luminiscental/aoc/inputDay9.txt" />
         <option value="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day9.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/com/luminiscental/aoc/inputDay10.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day10.java" />
       </list>
     </option>
   </component>
@@ -249,13 +286,17 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="AdventOfCode2018" type="b2602c69:ProjectViewProjectNode" />
               <item name="AdventOfCode2018" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AdventOfCode2018" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AdventOfCode2018" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AdventOfCode2018" type="b2602c69:ProjectViewProjectNode" />
@@ -311,11 +352,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545398473387" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../external-jars/commons-collections4-4.2/commons-collections4-4.2.jar!/" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545405099893" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/commons-collections4-4.2.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -359,7 +401,7 @@
     <frame x="16" y="34" width="1888" height="1030" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15960912" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16286644" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -368,7 +410,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32894737" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.29385966" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29385966" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991228" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -393,12 +435,22 @@
   <component name="XDebuggerManager">
     <watches-manager>
       <configuration name="Application">
-        <watch expression="values.subList(cursor, 8)" language="JAVA" />
+        <watch expression="lights" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>lights</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>line.trim()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>values.subList(cursor, 8)</expression-string>
         <language-id>JAVA</language-id>
@@ -442,9 +494,6 @@
           <caret line="50" selection-start-line="50" selection-end-line="50" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AdventOfCode2018.iml">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/util/Graph.java" />
     <entry file="jar:///usr/lib/jvm/java-11-openjdk/lib/src.zip!/java.base/java/util/regex/Matcher.java">
@@ -529,13 +578,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day7.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2400">
-          <caret line="160" selection-start-line="160" selection-end-line="160" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/util/DirectedGraph.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-229">
@@ -550,16 +592,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day8.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/com/luminiscental/aoc/inputDay9.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -567,20 +599,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day9.java">
+    <entry file="file://$PROJECT_DIR$/AdventOfCode2018.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="673">
-          <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
+        <state relative-caret-position="746">
+          <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day8.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
+        <state relative-caret-position="120">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day7.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="160" selection-start-line="160" selection-end-line="160" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day9.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="858">
+          <caret line="88" selection-start-line="88" selection-end-line="88" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/luminiscental/aoc/inputDay10.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="590">
+          <caret line="352" selection-start-line="352" selection-end-line="352" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/luminiscental/aoc/Day10.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="113" column="55" selection-start-line="113" selection-start-column="55" selection-end-line="113" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -1,7 +1,7 @@
 package com.luminiscental.aoc.util;
 
-import java.util.LinkedHashSet;
-import java.util.LinkedHashMap;
+import java.util.TreeSet;
+import java.util.TreeMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -9,11 +9,11 @@ public class DirectedGraph {
 
     static class Node {
 
-        Set<Integer> inEdges = new LinkedHashSet<>();
-        Set<Integer> outEdges = new LinkedHashSet<>();
+        Set<Integer> inEdges = new TreeSet<>();
+        Set<Integer> outEdges = new TreeSet<>();
     }
 
-    private final Map<Integer, Node> nodes = new LinkedHashMap<>();
+    private final Map<Integer, Node> nodes = new TreeMap<>();
 
     public int size() {
 
