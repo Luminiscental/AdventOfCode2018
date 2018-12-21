@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Day6 extends Day {
 
-    private static final int width = 1000;
+    private static final int width = 1000; // magic number :p
     private static final int bound = 10000;
 
     Day6() {

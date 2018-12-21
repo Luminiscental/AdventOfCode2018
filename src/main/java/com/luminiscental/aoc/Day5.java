@@ -1,5 +1,7 @@
 package com.luminiscental.aoc;
 
+import com.luminiscental.aoc.util.Point;
+
 import java.util.Comparator;
 import java.util.TreeSet;
 import java.util.Optional;
@@ -23,19 +25,16 @@ public class Day5 extends Day {
 
         Set<Integer> shortenedLengths = new TreeSet<>();
 
-        var charWrapper = new Object() {
-
-            char lower;
-            char upper;
-        };
+        Point<Integer> letter = new Point<>();
 
         for (char c = 'a'; c <= 'z'; c++) {
 
-            charWrapper.lower = c;
-            charWrapper.upper = Character.toUpperCase(c);
+            letter.x = (int) c;
+            letter.y = (int) Character.toUpperCase(c);
 
             String fixed = input.chars()
-                                .filter(x -> (x != (int)charWrapper.lower) && (x != (int)charWrapper.upper))
+                                .filter(a -> a != letter.x)
+                                .filter(a -> a != letter.y)
                                 .mapToObj(x -> String.valueOf((char)x))
                                 .collect(Collectors.joining());
 

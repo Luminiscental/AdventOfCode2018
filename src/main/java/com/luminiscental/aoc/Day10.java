@@ -1,5 +1,7 @@
 package com.luminiscental.aoc;
 
+import com.luminiscental.aoc.util.Point;
+
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,46 +10,23 @@ public class Day10 extends Day {
 
     static class Light implements Comparable<Light> {
 
-        final int initialPositionX;
-        final int initialPositionY;
+        final Point<Integer> initialPosition;
 
-        final int velocityX;
-        final int velocityY;
+        final Point<Integer> velocity;
 
-        int positionX;
-        int positionY;
+        Point<Integer> position;
 
         Light(int initialPositionX, int initialPositionY, int velocityX, int velocityY) {
 
-            this.initialPositionX = initialPositionX;
-            this.initialPositionY = initialPositionY;
-
-            this.velocityX = velocityX;
-            this.velocityY = velocityY;
-
-            this.positionX = initialPositionX;
-            this.positionY = initialPositionY;
+            initialPosition = new Point<>(initialPositionX, initialPositionY);
+            velocity = new Point<>(velocityX, velocityY);
+            position = initialPosition;
         }
 
         void step() {
 
-            positionX += velocityX;
-            positionY += velocityY;
-        }
-
-        private String getSerial() {
-
-            return initialPositionX + "." + initialPositionY + "." + velocityX + "." + velocityY;
-        }
-
-        int getX() {
-
-            return positionX;
-        }
-
-        int getY() {
-
-            return positionY;
+            position.x += velocity.x;
+            position.y += velocity.y;
         }
 
         @Override
@@ -58,19 +37,26 @@ public class Day10 extends Day {
                 return false;
             }
 
-            return getSerial().equals(((Light)other).getSerial());
+            Light otherLight = (Light) other;
+
+            return initialPosition.equals(otherLight.initialPosition) && velocity.equals(otherLight.velocity);
         }
 
         @Override
         public int hashCode() {
 
-             return initialPositionX * 13 + initialPositionY * 29 + velocityX * 7 + velocityY * 31;
+            return initialPosition.hashCode() * 31 + velocity.hashCode() * 29;
         }
 
         @Override
         public int compareTo(Light other) {
 
-            return getSerial().compareTo(other.getSerial());
+            if (initialPosition.compareTo(other.initialPosition) < 0 || initialPosition.compareTo(other.initialPosition) == 0 && velocity.compareTo(other.velocity) < 0) {
+
+                return -1;
+            }
+
+            return velocity.compareTo(other.velocity) == 0 ? 0 : 1;
         }
     }
 
@@ -124,10 +110,10 @@ public class Day10 extends Day {
 
     private boolean printLightsIfSmall(Set<Light> lights) {
 
-        int minX = Collections.min(lights, Comparator.comparingInt(Light::getX)).positionX;
-        int minY = Collections.min(lights, Comparator.comparingInt(Light::getY)).positionY;
-        int maxX = Collections.max(lights, Comparator.comparingInt(Light::getX)).positionX;
-        int maxY = Collections.max(lights, Comparator.comparingInt(Light::getY)).positionY;
+        int minX = Collections.min(lights, Comparator.comparingInt(l -> l.position.x)).position.x;
+        int minY = Collections.min(lights, Comparator.comparingInt(l -> l.position.y)).position.y;
+        int maxX = Collections.max(lights, Comparator.comparingInt(l -> l.position.x)).position.x;
+        int maxY = Collections.max(lights, Comparator.comparingInt(l -> l.position.y)).position.y;
 
         if (maxX - minX <= 80 && maxY - minY <= 10) { // magic numbers :p
 
@@ -135,10 +121,9 @@ public class Day10 extends Day {
 
                 for (int x = minX; x <= maxX; x++) {
 
-                    final int _x = x;
-                    final int _y = y;
+                    final Point<Integer> pos = new Point<>(x, y);
 
-                    long count = lights.stream().filter(light -> light.positionY == _y && light.positionX == _x).count();
+                    long count = lights.stream().filter(light -> light.position == pos).count();
 
                     char value = count == 0 ? ' ' : '■';
 
