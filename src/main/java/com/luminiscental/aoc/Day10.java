@@ -43,12 +43,6 @@ public class Day10 extends Day {
         }
 
         @Override
-        public int hashCode() {
-
-            return initialPosition.hashCode() * 31 + velocity.hashCode() * 29;
-        }
-
-        @Override
         public int compareTo(Light other) {
 
             if (initialPosition.compareTo(other.initialPosition) < 0 || initialPosition.compareTo(other.initialPosition) == 0 && velocity.compareTo(other.velocity) < 0) {

@@ -21,9 +21,15 @@ public class Point<T extends Comparable<T>> implements Comparable<Point<T>> {
         if ((xCompare < 0) || (xCompare == 0) && (yCompare < 0)) {
 
             return -1;
-        }
 
-        return yCompare == 0 ? 0 : 1;
+        } else if (xCompare > 0) {
+
+            return 1;
+
+        } else {
+
+            return yCompare == 0 ? 0 : 1;
+        }
     }
 
     @Override
@@ -38,12 +44,6 @@ public class Point<T extends Comparable<T>> implements Comparable<Point<T>> {
         }
 
         return false;
-    }
-
-    @Override
-    public int hashCode() {
-
-        return x.hashCode() * 131 + y.hashCode() * 17;
     }
 
     @Override

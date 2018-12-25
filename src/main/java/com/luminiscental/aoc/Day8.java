@@ -41,6 +41,18 @@ public class Day8 extends Day {
 
             return 0;
         }
+
+        @Override
+        public boolean equals(Object other) {
+
+            if (other instanceof Metadata) {
+
+                Metadata otherMetadata = (Metadata) other;
+                return values.equals(otherMetadata.values);
+            }
+
+            return false;
+        }
     }
 
     Day8() {

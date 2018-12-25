@@ -76,7 +76,6 @@ public class Day12 extends Day {
 
         void generate(List<Boolean[]> rules) {
 
-
             Set<Integer> newPlants = new TreeSet<>();
 
             int startIndex = minIndex - 2;

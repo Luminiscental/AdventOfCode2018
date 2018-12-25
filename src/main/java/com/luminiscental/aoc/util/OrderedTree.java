@@ -44,12 +44,6 @@ public class OrderedTree<T extends Comparable<T>> {
             return false;
         }
 
-        @Override
-        public int hashCode() {
-
-            return value.hashCode() * 13 + tree.hashCode() * 17 + childrenCount * 131;
-        }
-
         void addChild(Node<T> child) {
 
             childrenCount++;
