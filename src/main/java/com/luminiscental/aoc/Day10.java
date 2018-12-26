@@ -92,7 +92,7 @@ public class Day10 extends Day {
 
                     final Point pos = new Point(x, y);
 
-                    long count = lights.stream().filter(light -> light.position.x == pos.x && light.position.y == pos.y).count();
+                    long count = lights.stream().filter(light -> light.position.equals(pos)).count();
 
                     char value = count == 0 ? ' ' : '■';
 

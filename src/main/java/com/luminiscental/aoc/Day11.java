@@ -56,7 +56,7 @@ public class Day11 extends Day {
 
                 if (width == 3) {
 
-                    System.out.println("3x3 grid with most power is at " + result.topLeft);
+                    System.out.println("3x3 grid with most power is at (" + result.topLeft.x + ", " + result.topLeft.y + ")");
                 }
 
                 int currentPower = result.getPower();
@@ -85,7 +85,7 @@ public class Day11 extends Day {
 
         } else {
 
-            System.out.println("Grid of max power was at " + maxSection.topLeft + " with width " + maxSection.width);
+            System.out.println("Grid of max power was at (" + maxSection.topLeft.x + ", " + maxSection.topLeft.y + ") with width " + maxSection.width);
         }
     }
 
