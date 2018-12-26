@@ -1,9 +1,8 @@
 package com.luminiscental.aoc;
 
-import com.luminiscental.aoc.util.Point;
-
+import java.awt.*;
 import java.util.Comparator;
-import java.util.TreeSet;
+import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,9 +22,9 @@ public class Day5 extends Day {
 
         System.out.println("original polymer reacts down to " + getReactedLength(input) + " units");
 
-        Set<Integer> shortenedLengths = new TreeSet<>();
+        Set<Integer> shortenedLengths = new LinkedHashSet<>();
 
-        Point<Integer> letter = new Point<>();
+        Point letter = new Point();
 
         for (char c = 'a'; c <= 'z'; c++) {
 
@@ -74,7 +73,7 @@ public class Day5 extends Day {
         char[] units = polymer.toCharArray();
         int chainLength = polymer.length();
 
-        Set<Integer> removed = new TreeSet<>();
+        Set<Integer> removed = new LinkedHashSet<>();
 
         for (int i = 1; i < chainLength; i++) {
 

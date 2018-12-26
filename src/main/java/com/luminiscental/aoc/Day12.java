@@ -1,18 +1,13 @@
 package com.luminiscental.aoc;
 
-import org.apache.commons.collections4.list.TreeList;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 
 public class Day12 extends Day {
 
     static class State {
 
-        Set<Integer> plants = new TreeSet<>();
+        Set<Integer> plants = new LinkedHashSet<>();
 
         int minIndex = Integer.MAX_VALUE;
         int maxIndex = Integer.MIN_VALUE;
@@ -76,7 +71,7 @@ public class Day12 extends Day {
 
         void generate(List<Boolean[]> rules) {
 
-            Set<Integer> newPlants = new TreeSet<>();
+            Set<Integer> newPlants = new LinkedHashSet<>();
 
             int startIndex = minIndex - 2;
             int endIndex = maxIndex + 2;
@@ -121,7 +116,7 @@ public class Day12 extends Day {
 
         State state = new State(lines[0].substring(15));
 
-        List<Boolean[]> rules = new TreeList<>();
+        List<Boolean[]> rules = new ArrayList<>();
 
         for (int i = 2; i < lines.length; i++) {
 

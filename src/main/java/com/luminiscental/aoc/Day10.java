@@ -1,25 +1,24 @@
 package com.luminiscental.aoc;
 
-import com.luminiscental.aoc.util.Point;
-
+import java.awt.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Day10 extends Day {
 
-    static class Light implements Comparable<Light> {
+    static class Light {
 
-        final Point<Integer> initialPosition;
+        final Point initialPosition;
 
-        final Point<Integer> velocity;
+        final Point velocity;
 
-        Point<Integer> position;
+        Point position;
 
         Light(int initialPositionX, int initialPositionY, int velocityX, int velocityY) {
 
-            initialPosition = new Point<>(initialPositionX, initialPositionY);
-            velocity = new Point<>(velocityX, velocityY);
+            initialPosition = new Point(initialPositionX, initialPositionY);
+            velocity = new Point(velocityX, velocityY);
             position = initialPosition;
         }
 
@@ -27,30 +26,6 @@ public class Day10 extends Day {
 
             position.x += velocity.x;
             position.y += velocity.y;
-        }
-
-        @Override
-        public boolean equals(Object other) {
-
-            if (!(other instanceof Light)) {
-
-                return false;
-            }
-
-            Light otherLight = (Light) other;
-
-            return initialPosition.equals(otherLight.initialPosition) && velocity.equals(otherLight.velocity);
-        }
-
-        @Override
-        public int compareTo(Light other) {
-
-            if (initialPosition.compareTo(other.initialPosition) < 0 || initialPosition.compareTo(other.initialPosition) == 0 && velocity.compareTo(other.velocity) < 0) {
-
-                return -1;
-            }
-
-            return velocity.compareTo(other.velocity) == 0 ? 0 : 1;
         }
     }
 
@@ -64,7 +39,7 @@ public class Day10 extends Day {
 
         Pattern vectorPattern = Pattern.compile("<(-?[0-9]+),(-?[0-9]+)>");
 
-        Set<Light> lights = new TreeSet<>();
+        Set<Light> lights = new LinkedHashSet<>();
 
         for (String line : lines) {
 
@@ -115,9 +90,9 @@ public class Day10 extends Day {
 
                 for (int x = minX; x <= maxX; x++) {
 
-                    final Point<Integer> pos = new Point<>(x, y);
+                    final Point pos = new Point(x, y);
 
-                    long count = lights.stream().filter(light -> light.position == pos).count();
+                    long count = lights.stream().filter(light -> light.position.x == pos.x && light.position.y == pos.y).count();
 
                     char value = count == 0 ? ' ' : '■';
 

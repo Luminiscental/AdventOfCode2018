@@ -1,7 +1,5 @@
 package com.luminiscental.aoc;
 
-import org.apache.commons.collections4.list.TreeList;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -18,7 +16,7 @@ public class Day6 extends Day {
     @Override
     void solve(String[] lines) throws InvalidInputException {
 
-        List<Integer> centers = new TreeList<>();
+        List<Integer> centers = new ArrayList<>();
 
         for (String line : lines) {
 
@@ -53,12 +51,14 @@ public class Day6 extends Day {
         Optional<Integer> largestArea = areas.values().stream()
                                                       .max(Comparator.comparingInt(x -> x));
 
-        if (largestArea.isEmpty()) {
+        if (largestArea.isPresent()) {
+
+            System.out.println("largest area is " + largestArea.get());
+
+        } else {
 
             throw new InvalidInputException();
         }
-
-        System.out.println("largest area is " + largestArea);
 
         Set<Integer> region = getRegionBounded(centers);
         System.out.println("bounded region area is " + region.size());
@@ -111,7 +111,7 @@ public class Day6 extends Day {
 
     private Set<Integer> getRegionBounded(List<Integer> centers) {
 
-        Set<Integer> boundedRegion = new TreeSet<>();
+        Set<Integer> boundedRegion = new LinkedHashSet<>();
 
         for (int y = 0; y < width; y++) {
 

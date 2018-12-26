@@ -1,7 +1,5 @@
 package com.luminiscental.aoc;
 
-import org.apache.commons.collections4.list.TreeList;
-
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -14,7 +12,7 @@ public class Day4 extends Day {
 
     private class GuardData {
 
-        List<Map.Entry<Integer, Integer>> sleepPeriods = new TreeList<>();
+        List<Map.Entry<Integer, Integer>> sleepPeriods = new ArrayList<>();
         int id;
 
         GuardData(int id) {
@@ -24,7 +22,7 @@ public class Day4 extends Day {
 
         GuardData add(int startTime, int endTime) {
 
-            sleepPeriods.add(new TreeMap.SimpleEntry<>(startTime, endTime));
+            sleepPeriods.add(new LinkedHashMap.SimpleEntry<>(startTime, endTime));
             return this;
         }
     }
@@ -42,7 +40,7 @@ public class Day4 extends Day {
             this.id = id;
 
             Set<Map.Entry<Integer, Integer>> entries = IntStream.range(0, 60)
-                                                                .mapToObj(i -> new TreeMap.SimpleEntry<>(i, countAsleep(id, days, i)))
+                                                                .mapToObj(i -> new LinkedHashMap.SimpleEntry<>(i, countAsleep(id, days, i)))
                                                                 .collect(Collectors.toSet());
 
             Optional<Map.Entry<Integer, Integer>> sleepiestEntry = entries.stream()
@@ -75,7 +73,7 @@ public class Day4 extends Day {
         SimpleDateFormat parser = new SimpleDateFormat("[yyyy-MM-dd HH:mm]");
 
         var records = Arrays.stream(lines)
-                            .map(line -> (Map.Entry<Date, String>) new TreeMap.SimpleEntry<>(parser.parse(line.substring(0, 18), new ParsePosition(0)), line.substring(19)))
+                            .map(line -> (Map.Entry<Date, String>) new LinkedHashMap.SimpleEntry<>(parser.parse(line.substring(0, 18), new ParsePosition(0)), line.substring(19)))
                             .sorted(Comparator.comparing(Map.Entry::getKey))
                             .collect(Collectors.toList());
 
@@ -109,7 +107,7 @@ public class Day4 extends Day {
 
     private Map<Integer, GuardData> parseGuards(List<Map.Entry<Date, String>> records) {
 
-        Map<Integer, GuardData> days = new TreeMap<>();
+        Map<Integer, GuardData> days = new LinkedHashMap<>();
         int id = -1;
 
         Calendar calendar = Calendar.getInstance();

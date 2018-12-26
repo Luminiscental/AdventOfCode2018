@@ -2,8 +2,8 @@ package com.luminiscental.aoc;
 
 
 import com.luminiscental.aoc.util.OrderedTree;
-import org.apache.commons.collections4.list.TreeList;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +11,7 @@ public class Day8 extends Day {
 
     static class Metadata implements Comparable<Metadata> {
 
-        List<Integer> values = new TreeList<>();
+        List<Integer> values = new ArrayList<>();
 
         @Override
         public int compareTo(Metadata other) {
@@ -63,7 +63,7 @@ public class Day8 extends Day {
     @Override
     void solve(String[] lines) {
 
-        List<Integer> inputValues = new TreeList<>();
+        List<Integer> inputValues = new ArrayList<>();
 
         Scanner inputScanner = new Scanner(lines[0]);
 
@@ -72,13 +72,13 @@ public class Day8 extends Day {
             inputValues.add(inputScanner.nextInt());
         }
 
-        OrderedTree<Metadata> tree = parseOrderedTree(inputValues);
+        OrderedTree<Metadata> LinkedHash = parseOrderedLinkedHash(inputValues);
 
-        int totalMetadataSum = tree.getNodes().stream()
+        int totalMetadataSum = LinkedHash.getNodes().stream()
                                               .flatMapToInt(x -> x.value.values.stream().mapToInt(y -> y))
                                               .sum();
 
-        System.out.println("All metadata sums to " + totalMetadataSum + ", the value of the root node is " + getValue(tree.root));
+        System.out.println("All metadata sums to " + totalMetadataSum + ", the value of the root node is " + getValue(LinkedHash.root));
     }
 
     private long getValue(OrderedTree.Node<Metadata> node) {
@@ -120,7 +120,7 @@ public class Day8 extends Day {
         return result;
     }
 
-    private OrderedTree<Metadata> parseOrderedTree(List<Integer> values) {
+    private OrderedTree<Metadata> parseOrderedLinkedHash(List<Integer> values) {
 
         Metadata data = new Metadata();
 
@@ -133,10 +133,10 @@ public class Day8 extends Day {
 
         for (int i = 0; i < childCount; i++) {
 
-            OrderedTree<Metadata> subtree = parseOrderedTree(values.subList(cursor, values.size()));
-            result.addSubtree(subtree);
+            OrderedTree<Metadata> subLinkedHash = parseOrderedLinkedHash(values.subList(cursor, values.size()));
+            result.addSubLinkedHash(subLinkedHash);
 
-            cursor += parseSize(subtree.root);
+            cursor += parseSize(subLinkedHash.root);
         }
 
         result.root.value.values.addAll(values.subList(cursor, cursor + metadataCount));

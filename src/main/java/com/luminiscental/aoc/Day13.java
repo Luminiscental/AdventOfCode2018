@@ -1,18 +1,19 @@
 package com.luminiscental.aoc;
 
-import com.luminiscental.aoc.util.Point;
-
+import java.awt.*;
 import java.util.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Day13 extends Day {
 
     static class Cart {
 
-        Point<Integer> coordinate;
+        Point coordinate;
         int direction; // 0 = ^, 1 = <, 2 = v, 3 = >
         int turns;
 
-        Cart(int direction, Point<Integer> coordinate) {
+        Cart(int direction, Point coordinate) {
 
             this.coordinate = coordinate;
             this.direction = direction;
@@ -60,7 +61,7 @@ public class Day13 extends Day {
             }
         }
 
-        void readDirection(Map<Point<Integer>, Character> map) {
+        void readDirection(Map<Point, Character> map) {
 
             boolean v = vertical();
             boolean turn = true;
@@ -98,7 +99,7 @@ public class Day13 extends Day {
             }
         }
 
-        void step(Map<Point<Integer>, Character> map) {
+        void step(Map<Point, Character> map) {
 
             move();
             readDirection(map);
@@ -115,30 +116,48 @@ public class Day13 extends Day {
     void solve(String[] lines) throws InvalidInputException {
 
         List<Cart> carts = new ArrayList<>();
-        Map<Point<Integer>, Character> map = new TreeMap<>();
+        Map<Point, Character> map = new LinkedHashMap<>();
 
         readMap(lines, carts, map);
 
-        boolean collided = false;
+        boolean first = true;
 
-        while (!collided) {
+        do {
+
 
             carts.sort(Comparator.comparingInt((Cart c) -> c.coordinate.y).thenComparingInt(c -> c.coordinate.x));
+            List<Integer> cartsToRemove = new ArrayList<>();
 
             for (int i = 0; i < carts.size(); i++) {
 
+                if (cartsToRemove.contains(i)) continue;
+
                 carts.get(i).step(map);
+                int other = checkForCollision(i, carts, first);
 
-                if (checkForCollision(i, carts)) {
+                if (other >= 0) {
 
-                    collided = true;
-                    break;
+                    cartsToRemove.add(i);
+                    cartsToRemove.add(other);
+
+                    first = false;
                 }
             }
-        }
+
+            cartsToRemove.sort(Comparator.reverseOrder());
+
+            for (int i : cartsToRemove) {
+
+                carts.remove(i);
+            }
+
+        } while (carts.size() > 1);
+
+        Cart lastCart = carts.get(0);
+        System.out.println("The last cart is at (" + lastCart.coordinate.x + ", " + lastCart.coordinate.y + ")");
     }
 
-    private void readMap(String[] lines, List<Cart> carts, Map<Point<Integer>, Character> map) {
+    private void readMap(String[] lines, List<Cart> carts, Map<Point, Character> map) {
 
         for (int y = 0; y < lines.length; y++) {
 
@@ -150,35 +169,35 @@ public class Day13 extends Day {
 
                     case '^':
 
-                        carts.add(new Cart(0, new Point<>(x, y)));
-                        map.put(new Point<>(x, y), '|');
+                        carts.add(new Cart(0, new Point(x, y)));
+                        map.put(new Point(x, y), '|');
 
                         break;
 
                     case '<':
 
-                        carts.add(new Cart(1, new Point<>(x, y)));
-                        map.put(new Point<>(x, y), '-');
+                        carts.add(new Cart(1, new Point(x, y)));
+                        map.put(new Point(x, y), '-');
 
                         break;
 
                     case 'v':
 
-                        carts.add(new Cart(2, new Point<>(x, y)));
-                        map.put(new Point<>(x, y), '|');
+                        carts.add(new Cart(2, new Point(x, y)));
+                        map.put(new Point(x, y), '|');
 
                         break;
 
                     case '>':
 
-                        carts.add(new Cart(3, new Point<>(x, y)));
-                        map.put(new Point<>(x, y), '-');
+                        carts.add(new Cart(3, new Point(x, y)));
+                        map.put(new Point(x, y), '-');
 
                         break;
 
                     default:
 
-                        if (val != ' ' && val != '\n') map.put(new Point<>(x, y), val);
+                        if (val != ' ' && val != '\n') map.put(new Point(x, y), val);
 
                         break;
                 }
@@ -186,9 +205,9 @@ public class Day13 extends Day {
         }
     }
 
-    private boolean checkForCollision(int index, List<Cart> carts) {
+    private int checkForCollision(int index, List<Cart> carts, boolean first) {
 
-        Point<Integer> coordToCheck = carts.get(index).coordinate;
+        Point coordToCheck = carts.get(index).coordinate;
 
         for (int i = 0; i < carts.size(); i++) {
 
@@ -196,12 +215,12 @@ public class Day13 extends Day {
 
             if (carts.get(i).coordinate.equals(coordToCheck)) {
 
-                System.out.println("Collision at " + coordToCheck); // wrong?!
+                if (first) System.out.println("First collision at (" + coordToCheck.x + ", " + coordToCheck.y + ")");
 
-                return true;
+                return i;
             }
         }
 
-        return false;
+        return -1;
     }
 }

@@ -1,7 +1,6 @@
 package com.luminiscental.aoc;
 
-import com.luminiscental.aoc.util.Point;
-
+import java.awt.*;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -20,14 +19,14 @@ public class Day11 extends Day {
 
         class SectionData {
 
-            private Point<Integer> topLeft;
+            private Point topLeft;
             private int width;
             private int power;
 
             private SectionData(int index, int width) {
 
                 this.width = width;
-                topLeft = new Point<>(1 + index % 300, 1 + index / 300);
+                topLeft = new Point(1 + index % 300, 1 + index / 300);
                 power = getSectionPower(topLeft, width, serialNumber);
             }
 
@@ -101,7 +100,7 @@ public class Day11 extends Day {
         return digit - 5;
     }
 
-    private int getSectionPower(Point<Integer> topLeft, int width, int serialNumber) {
+    private int getSectionPower(Point topLeft, int width, int serialNumber) {
 
         return IntStream.range(0, width * width)
                         .map(index -> {

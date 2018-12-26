@@ -1,8 +1,7 @@
 package com.luminiscental.aoc.util;
 
-import org.apache.commons.collections4.list.TreeList;
-
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -10,18 +9,18 @@ public class OrderedTree<T extends Comparable<T>> {
 
     public static class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
 
-        OrderedTree tree;
+        OrderedTree LinkedHash;
         public T value;
 
         int childrenCount = 0;
         List<Node<T>> children;
 
-        Node(OrderedTree tree, T value) {
+        Node(OrderedTree LinkedHash, T value) {
 
-            this.tree = tree;
+            this.LinkedHash = LinkedHash;
             this.value = value;
 
-            children = new TreeList<>();
+            children = new ArrayList<>();
         }
 
         @Override
@@ -62,7 +61,7 @@ public class OrderedTree<T extends Comparable<T>> {
 
         Set<Node<T>> getAllChildren() {
 
-            Set<Node<T>> result = new TreeSet<>(getChildren());
+            Set<Node<T>> result = new LinkedHashSet<>(getChildren());
 
             for (Node<T> child : children) {
 
@@ -80,13 +79,13 @@ public class OrderedTree<T extends Comparable<T>> {
         root = new Node<>(this, rootValue);
     }
 
-    public void addSubtree(OrderedTree<T> subtree) {
+    public void addSubLinkedHash(OrderedTree<T> subLinkedHash) {
 
-        root.addChild(subtree.root);
+        root.addChild(subLinkedHash.root);
 
         for (Node<T> child : root.getChildren()) {
 
-            child.tree = this;
+            child.LinkedHash = this;
         }
     }
 
